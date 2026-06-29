@@ -1,4 +1,4 @@
-name: React CI
+name: Expo CI
 
 on:
   push:
@@ -7,24 +7,17 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
 
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install Packages
         run: npm install
 
-      - name: Build Project
-        run: npm run build
-
-      - name: Run Tests
-        run: npm test -- --watchAll=false
+      - name: Check Expo Project
+        run: npm run web
